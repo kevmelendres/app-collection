@@ -7,6 +7,7 @@ Currently, this only includes one program -- 'Column Transverse Designer'
 -------------------------------------------------
 
 COLUMN TRANSVERSE DESIGNER
+
 This calculates the required reinforcements of a column for its ductility requirements, as per the American Concrete Institute (ACI) structural code.
 
 The program features single column analysis, which is capable of saving the results to an external file. Single file analysis results are saved to a text file and can be loaded back to the program, as needed. Program can also produce a PDF copy of the calculations.
