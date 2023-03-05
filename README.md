@@ -13,6 +13,8 @@ This calculates the required reinforcements of a column for its ductility requir
 
 The program features single column analysis, which is capable of saving the results to an external file. Single file analysis results are saved to a text file and can be loaded back to the program, as needed. Program can also produce a PDF copy of the calculations.
 
-This program is also capable of handling batch analysis. Basically, it loops the single file analysis in order to conveniently analyze multiple sets of data. Data handling is done through Excel API. 
+This program is also capable of handling batch analysis. Basically, it loops the single file analysis in order to conveniently analyze multiple sets of data. 
+
+Data handling is done through Excel API by xlwings. GUI is created using PyQT (QT Designer). 
 
 -------------------------------------------------
