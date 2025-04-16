@@ -24,15 +24,15 @@ class MainApplication(QMainWindow):
 		openWindow = ColumnTransverseDesigner()
 
 	def closeEvent(self, event):
-	 	msgBox = QMessageBox()
-	 	msgBox.setIcon(QMessageBox.Warning)
-	 	msgBox.setText("Are you sure you want to quit?")
-	 	msgBox.setWindowTitle("Quit?")
-	 	msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-	 	responseVal = msgBox.exec()
-	 	if responseVal == QMessageBox.Ok:
-	 		event.accept()
-	 	else:
+		msgBox = QMessageBox()
+		msgBox.setIcon(QMessageBox.Warning)
+		msgBox.setText("Are you sure you want to quit?")
+		msgBox.setWindowTitle("Quit?")
+		msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+		responseVal = msgBox.exec()
+		if responseVal == QMessageBox.Ok:
+			event.accept()
+		else:
 	 		event.ignore()
 
 		
@@ -259,8 +259,8 @@ class ColumnTransverseDesigner(QMainWindow):
 	
    		
 	def closeEvent(self, event):
-	 	mainWindow = MainApplication()
-	 	mainWindow.show()
+		mainWindow = MainApplication()
+		mainWindow.show()
 
 
 

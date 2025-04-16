@@ -507,50 +507,49 @@ class BatchAnalysisMethods():
 
 
 		if self.templatePath != "" and self.batchFilePath != "":
-
- 			wb = xw.Book(self.batchFilePath)
- 			ws = wb.sheets["CONSOLIDATED"]
-
- 			if self.btnOpenTemplate.text() == "Find Template":
-
- 				isTemplateInDir = os.path.isfile('./ColumnTransverseDesignerTemplate.xlsx')
-
- 				if isTemplateInDir == True:
- 					self.templatePath = 'ColumnTransverseDesignerTemplate.xlsx'
-
- 				else:
- 					msgBox = QMessageBox()
- 					msgBox.setIcon(QMessageBox.Information)
- 					msgBox.setText("Cannot find template in default directory. Need to import template first.")
- 					msgBox.setWindowTitle("Error")
- 					msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
- 					respoBrowse = msgBox.exec()
-
- 					if respoBrowse == QMessageBox.Ok:
- 						templatePath, _ = QFileDialog.getOpenFileName(self,"Select a File",'.',"Excel Files (*.xlsx *.xlsm)")
- 						self.templatePath = templatePath
-
- 						if templatePath != "":
- 							self.btnOpenTemplate.setText("Open Template")
- 							msgOpenTemp = QMessageBox()
- 							msgOpenTemp.setIcon(QMessageBox.Information)
- 							msgOpenTemp.setText("Template successfully selected")
- 							msgOpenTemp.setWindowTitle("Template Selected!")
- 							msgOpenTemp.setStandardButtons(QMessageBox.Ok)
- 							respoValOpen = msgOpenTemp.exec()
-
- 			startRow, _ = QInputDialog.getInt(self, "Input Start Row", "Input first row of data to be analyzed.")
- 			endRow, _ = QInputDialog.getInt(self, "Input End Row", "Input last row of data to be analyzed.")
-
- 			for i in range(startRow,endRow+1):
- 				if BatchAnalysisMethods.ValidateDataRow(self,i)[0] != 0:
- 					ws.range("N" + str(i)).value = BatchAnalysisMethods.ValidateDataRow(self,i)[1]
- 					continue
- 				else:
- 					BatchAnalysisMethods.InputDataToForm(self,i)
- 					ctdCalc.CTDJointConfinementDesign(self)
- 					ctdCalc.CTDTieDesign(self)
- 					BatchAnalysisMethods.WriteResultsToWS(self,i)
+			wb = xw.Book(self.batchFilePath)
+			ws = wb.sheets["CONSOLIDATED"]
+			
+			if self.btnOpenTemplate.text() == "Find Template":
+				
+				isTemplateInDir = os.path.isfile('./ColumnTransverseDesignerTemplate.xlsx')
+				
+				if isTemplateInDir == True:
+					self.templatePath = 'ColumnTransverseDesignerTemplate.xlsx'
+					
+				else:
+					msgBox = QMessageBox()
+					msgBox.setIcon(QMessageBox.Information)
+					msgBox.setText("Cannot find template in default directory. Need to import template first.")
+					msgBox.setWindowTitle("Error")
+					msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+					respoBrowse = msgBox.exec()
+					
+					if respoBrowse == QMessageBox.Ok:
+						templatePath, _ = QFileDialog.getOpenFileName(self,"Select a File",'.',"Excel Files (*.xlsx *.xlsm)")
+						self.templatePath = templatePath
+						
+					if templatePath != "":
+						self.btnOpenTemplate.setText("Open Template")
+						msgOpenTemp = QMessageBox()
+						msgOpenTemp.setIcon(QMessageBox.Information)
+						msgOpenTemp.setText("Template successfully selected")
+						msgOpenTemp.setWindowTitle("Template Selected!")
+						msgOpenTemp.setStandardButtons(QMessageBox.Ok)
+						respoValOpen = msgOpenTemp.exec()
+						
+			startRow, _ = QInputDialog.getInt(self, "Input Start Row", "Input first row of data to be analyzed.")
+			endRow, _ = QInputDialog.getInt(self, "Input End Row", "Input last row of data to be analyzed.")
+			
+			for i in range(startRow,endRow+1):
+				if BatchAnalysisMethods.ValidateDataRow(self,i)[0] != 0:
+					ws.range("N" + str(i)).value = BatchAnalysisMethods.ValidateDataRow(self,i)[1]
+					continue
+				else:
+					BatchAnalysisMethods.InputDataToForm(self,i)
+					ctdCalc.CTDJointConfinementDesign(self)
+					ctdCalc.CTDTieDesign(self)
+					BatchAnalysisMethods.WriteResultsToWS(self,i)
 
 				
 
